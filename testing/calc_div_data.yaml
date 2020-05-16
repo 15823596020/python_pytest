@@ -5,3 +5,5 @@
 - [8.9,3,2.966666666666667] # float/int and bu neng zheng chu
 - [0.0004,0.1,0.004] # float/float
 - [500,12.5,40]  # int/float
+- [-10,2,-5]  # negative number
+- [-200.22,-2,100.11]
