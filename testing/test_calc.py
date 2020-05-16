@@ -34,7 +34,7 @@ class TestCalc:
         result = self.calc.add(a, b)  # 超出计算器范围，这里是以办公计算器为例
         raise Exception("Out of range")  # 抛出异常描述
 
-    @pytest.mark.parametrize('a, b, expect', yaml.safe_load(open("calc_div_data.yaml")))
+    @pytest.mark.parametrize('a, b, expect', yaml.safe_load(open("calc_div_data1111.yaml")))
     def test_div(self, a, b, expect):
         result = self.calc.dev(a, b)  # 计算2个数相除，并赋值给result
         print(f"result========={result}")  # 打印result的值
