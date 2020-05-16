@@ -5,10 +5,8 @@
 """
 # 定义TestCalc类
 import random
-
 import pytest
 import yaml
-
 from python_pytest.python_code.cacl import Calc
 
 
