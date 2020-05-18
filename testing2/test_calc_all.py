@@ -9,9 +9,10 @@
 from decimal import Decimal
 import pytest
 import yaml
-from python_pytest.python_code.cacl import Calc
+from python_pytest.testing2.cacl import Calc
 
 class TestCalc:
+
     def setup_class(self):
         # self.calc = Calc()  # 在setupclass方法中实例化类，实例化对象，在整个类中都可以使用，提高运行速度
         pass
@@ -55,24 +56,39 @@ class TestCalc:
                 assert result == Decimal(str(expect))  # 断言result与预期结果expect的值相等，相等该用例就运行通过，不相等该用例就运行失败
                 print(f"result=={result},expect=={expect}")  # 打印result和expect的值
 
+    # # 解析获取到的文件中的测试步骤
+    # def any_step(self, a, b, expect):
+    #     steps = TestCalc.get_step(self)  # 调用类的get_step方法
+    #     for step in steps:  # 遍历测试步骤
+    #         yield
+    #         if 'add' == step:  # 如果step=add，就执行加法
+    #             result = self.calc.add(Decimal(str(a)), Decimal(str(b)))
+    #             assert result == Decimal(str(expect))  # 断言result与预期结果expect的值相等，相等该用例就运行通过，不相等该用例就运行失败
+    #             print(f"result=={result},expect=={expect}")  # 打印result和expect的值
+    #
+    #         elif 'div' == step:  # 如果step=div，就执行除法
+    #             result = self.calc.div(Decimal(str(a)), Decimal(str(b)))
+    #             assert result == Decimal(str(expect))  # 断言result与预期结果expect的值相等，相等该用例就运行通过，不相等该用例就运行失败
+    #             print(f"result=={result},expect=={expect}")  # 打印result和expect的值
+
     @pytest.mark.parametrize('a, b, expect', get_data()['add'])  # 参数化时，调用get_data方法，并传入加法相关测试数据
-    def calc__add(self, a, b, expect):
+    def calc_add(self, a, b, expect):
         self.any_step_add(a, b, expect)
 
     @pytest.mark.parametrize('a, b, expect', get_data()['sub'])  # 参数化时，调用get_data方法，并传入减法相关测试数据
-    def calc__sub(self, a, b, expect):
+    def calc_sub(self, a, b, expect):
         result = self.calc.sub(Decimal(str(a)), Decimal(str(b)))  # 计算2个数相减，并赋值给result
         assert result == Decimal(str(expect))  # 断言result与预期结果expect的值相等，相等该用例就运行通过，不相等该用例就运行失败
         print(f"result=={result},expect=={expect}")  # 打印result和expect的值# 参数化时，调用get_data方法，并传入减法相关测试数据
 
     @pytest.mark.parametrize('a, b, expect', get_data()['mul'])  # 参数化时，调用get_data方法，并传入乘法相关测试数据
-    def calc__mul(self, a, b, expect):
+    def calc_mul(self, a, b, expect):
         result = self.calc.mul(Decimal(str(a)), Decimal(str(b)))  # 计算2个数相乘，并赋值给result
         assert result == Decimal(str(expect))  # 断言result与预期结果expect的值相等，相等该用例就运行通过，不相等该用例就运行失败
         print(f"result=={result},expect=={expect}")  # 打印result和expect的值
 
     @pytest.mark.parametrize('a, b, expect', get_data()['div'])  # 参数化时，调用get_data方法，并传入除法相关测试数据
-    def calc__div(self, a, b, expect):
+    def calc_div(self, a, b, expect):
         if b == 0:
             pytest.raises(ZeroDivisionError, self.any_step_div(a, b, expect))  # 如果除数为零就抛出异常
         elif b != 0:
