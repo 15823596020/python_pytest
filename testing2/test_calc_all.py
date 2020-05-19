@@ -40,7 +40,7 @@ class TestCalc:
 
     # 解析获取到的文件中的加法测试步骤
     def any_step_add(self, a, b, expect):
-        steps = TestCalc.get_step(self)  # 调用类的get_step方法
+        steps = self.get_step()  # 调用get_step方法
         for step in steps:  # 遍历测试步骤
             if 'add' == step:  # 如果step=add，就执行加法
                 result = self.calc.add(Decimal(str(a)), Decimal(str(b)))
@@ -70,7 +70,7 @@ class TestCalc:
     #             result = self.calc.div(Decimal(str(a)), Decimal(str(b)))
     #             assert result == Decimal(str(expect))  # 断言result与预期结果expect的值相等，相等该用例就运行通过，不相等该用例就运行失败
     #             print(f"result=={result},expect=={expect}")  # 打印result和expect的值
-
+    @pytest.mark.run(order=4)
     @pytest.mark.parametrize('a, b, expect', get_data()['add'])  # 参数化时，调用get_data方法，并传入加法相关测试数据
     def calc_add(self, a, b, expect):
         self.any_step_add(a, b, expect)
