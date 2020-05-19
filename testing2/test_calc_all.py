@@ -49,7 +49,7 @@ class TestCalc:
 
     # 解析获取到的文件中的除法测试步骤
     def any_step_div(self, a, b, expect):
-        steps = TestCalc.get_step(self)  # 调用类的get_step方法
+        steps = self.get_step()  # 调用get_step方法
         for step in steps:  # 遍历测试步骤
             if 'div' == step:  # 如果step=div，就执行除法
                 result = self.calc.div(Decimal(str(a)), Decimal(str(b)))
